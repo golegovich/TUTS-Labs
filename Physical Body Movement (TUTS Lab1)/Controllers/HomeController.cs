@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Physical_Body_Movement__TUTS_Lab1_.Models;
 
 namespace Physical_Body_Movement__TUTS_Lab1_.Controllers
 {
@@ -32,9 +30,26 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Controllers
             return View();
         }
 
-        public string GetChartData()
+        [HttpGet]
+        public ChartData GetChartData(string a1, string a2, string distance, string time)
         {
-            return null;
+            double a1D;
+            double a2D;
+            double distanceD;
+            double timeD;
+            
+            if (!double.TryParse(a1, out a1D) ||
+                !double.TryParse(a2, out a2D) ||
+                !double.TryParse(distance, out distanceD) ||
+                !double.TryParse(time, out timeD))
+                return new ChartData();
+            
+            return new ChartData
+            {
+                X = new List<double> { 1, 2, 3 },
+                Y = new List<double> { 3, 2, 1 },
+                IsValid = true
+            };
         }
     }
 }

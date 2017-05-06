@@ -1,60 +1,37 @@
-﻿function drawChart(parameters) {
-    c3.generate({
-        bindto: "#chart",
-        data: {
-            x: "x",
-            columns: [
-                ["x", 0.01, 0.05, 0.1, 0.5, 1, 2],
-                ["dx/dt", 1, 2, 3, 4, 5, 6]
-            ]
+﻿function drawChart() {
+    $("#error").addClass("hide");
+    $.get("/Home/GetChartData",
+        {
+            a1: $("#a1").val(),
+            a2: $("#a2").val(),
+            distance: $("#distance").val(),
+            time: $("#time").val()
+        },
+        function (data) {
+            if (!data.isValid) {
+	            $("#error").toggle();
+                //var divForError = $("#error")[0];
+                $("#error")[0].textContent = "You entered wrong data. All values must be doubles";
+	            $("#error").removeClass("hide");
+                return;
+            }
+
+            var xAxis = data.x.slice();
+            xAxis.unshift("x");
+            var yAxis = data.y.slice();
+            yAxis.unshift("dx/");
+            c3.generate({
+                bindto: "#chart",
+                data: {
+                    x: "x",
+                    columns: [
+                        xAxis,
+                        yAxis
+                        //["x", 0.01, 0.05, 0.1, 0.5, 1, 2],
+                        //["dx/dt", 1, 2, 3, 4, 5, 6]
+                    ]
+                }
+            });
         }
-    });
-
-    //require.config({
-    //    baseUrl: "/js",
-    //    paths: {
-    //        d3: "http://d3js.org/d3.v3.min"
-    //    }
-    //});
-
-    //require(["d3", "c3"], function (d3, c3) {
-    //    var chart = c3.generate({
-    //        bindto: "#chart",
-    //        data: {
-    //            columns: [
-    //                ["data1", 1, 2, 3, 4, 5, 6],
-    //                //['data2', 50, 20, 10, 40, 15, 25]
-    //            ]
-    //        }
-    //    });
-    //});
-
-    //require(['Chart.min.js'], function (Chart) {
-    //    var scatterChart = new Chart("pes", {
-    //        type: "line",
-    //        data: {
-    //            datasets: [{
-    //                label: "Scatter Dataset",
-    //                data: [{
-    //                    x: -10,
-    //                    y: 0
-    //                }, {
-    //                    x: 0,
-    //                    y: 10
-    //                }, {
-    //                    x: 10,
-    //                    y: 5
-    //                }]
-    //            }]
-    //        },
-    //        options: {
-    //            scales: {
-    //                xAxes: [{
-    //                    type: "linear",
-    //                    position: "bottom"
-    //                }]
-    //            }
-    //        }
-    //    });
-    //});   
+    );
 }
