@@ -1,10 +1,11 @@
 ﻿function drawChart(parameters) {
-    var chart = c3.generate({
+    c3.generate({
         bindto: "#chart",
         data: {
+            x: "x",
             columns: [
-                ["data1", 1, 2, 3, 4, 5, 6],
-                //['data2', 50, 20, 10, 40, 15, 25]
+                ["x", 0.01, 0.05, 0.1, 0.5, 1, 2],
+                ["dx/dt", 1, 2, 3, 4, 5, 6]
             ]
         }
     });

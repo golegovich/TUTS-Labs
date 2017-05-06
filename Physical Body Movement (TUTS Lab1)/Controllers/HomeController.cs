@@ -31,5 +31,10 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Controllers
         {
             return View();
         }
+
+        public string GetChartData()
+        {
+            return null;
+        }
     }
 }
