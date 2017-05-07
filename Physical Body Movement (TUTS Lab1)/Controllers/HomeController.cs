@@ -31,19 +31,16 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Controllers
         }
 
         [HttpGet]
-        public ChartData GetChartData(string a1, string a2, string distance, string time)
+        public ChartData GetChartData(string a1, string a2, string time, string x0, string x1)
         {
-            double a1D;
-            double a2D;
-            double distanceD;
-            double timeD;
-            
-            if (!double.TryParse(a1, out a1D) ||
-                !double.TryParse(a2, out a2D) ||
-                !double.TryParse(distance, out distanceD) ||
-                !double.TryParse(time, out timeD))
+            if (!double.TryParse(a1, out double a1D) ||
+                !double.TryParse(a2, out double a2D) ||
+                !double.TryParse(time, out double timeD) ||
+                !double.TryParse(x0, out double x0D) ||
+                !double.TryParse(x1, out double x1D))
                 return new ChartData();
-            
+
+            return Physics.Calculate(a1D, a2D, timeD, x0D, x1D);
             return new ChartData
             {
                 X = new List<double> { 1, 2, 3 },

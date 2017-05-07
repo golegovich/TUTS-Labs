@@ -4,8 +4,9 @@
         {
             a1: $("#a1").val(),
             a2: $("#a2").val(),
-            distance: $("#distance").val(),
-            time: $("#time").val()
+            time: $("#time").val(),
+            x0: $("#x0").val(),
+            x1: $("#x1").val()
         },
         function (data) {
             if (!data.isValid) {
@@ -19,7 +20,7 @@
             var xAxis = data.x.slice();
             xAxis.unshift("x");
             var yAxis = data.y.slice();
-            yAxis.unshift("dx/");
+            yAxis.unshift("dx/dt");
             c3.generate({
                 bindto: "#chart",
                 data: {
