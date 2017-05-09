@@ -1,4 +1,4 @@
 # TUTS-Labs
-## Lab 2
+## Lab 3
 
 Every lab is a branch. First lab = master
