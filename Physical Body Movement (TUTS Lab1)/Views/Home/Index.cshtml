@@ -4,17 +4,19 @@
 
 <div>
     <div class="jumbotron text-center">
-        <label for="a">a</label>
-        <input id="a" type="text" placeholder="a" value="10" />
-        <label for="k">k</label>
-        <input id="k" type="text" placeholder="k" value="5"/>
+        <label for="Tu">Tu</label>
+        <input id="Tu" type="text" placeholder="Tu" value="10" />
+        <label for="Tg">Tg</label>
+        <input id="Tg" type="text" placeholder="Tg" value="5" />
+        <label for="T">T</label>
+        <input id="T" type="text" placeholder="T" value="5" /><br />
+        <label for="thetaCoefficient">θ coefficient</label>
+        <input id="thetaCoefficient" type="text" placeholder="θ coefficient" value="1" />
+        <label for="N">N</label>
+        <input id="N" type="text" placeholder="Number of points" value="100" /><br /><br />
 
-        <input type="radio" name="type" value="0" checked>Ланка підсилення
-        <input type="radio" name="type" value="1">Аперіодична ланка<br><br>
-
-        <button onclick="drawChart(0)" class="btn">F(t)</button>
-        <button onclick="drawChart(1)" class="btn">A(ω)</button>
-        <button onclick="drawChart(2)" class="btn">ϕ(ω)</button>
+        <button onclick="drawChart(0)" class="btn">Пропорційно-інтегродиференціальний алгоритм</button>
+        <button onclick="drawChart(1)" class="btn">Пропорційно-інтегральний алгоритм</button>
     </div>
     <div class="row">
     </div>

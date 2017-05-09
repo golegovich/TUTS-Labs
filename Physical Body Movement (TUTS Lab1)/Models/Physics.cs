@@ -5,48 +5,25 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Models
 {
     public static class Physics
     {
-        public static ChartData Calculate(double a, double k, int type, int funcNumber)
+        public static ChartData Calculate(double tu, double tg, double t, double thetaCoefficient, double n, int type)
         {
-            var x = new List<double>();
-            var y = new List<double>();
+            double Theta(int i) => thetaCoefficient * i;
 
+            Func<int, double> func;
+            if (type == 0)  // Пропорційно-інтегродиференціальний алгоритм
+                func = i => (1 + tg / t) * Theta(i) - (1 - 2 * tg / t + t / tu) * Theta(i - 1) + tg / t * Theta(i - 2);
+            else            // Пропорційно-інтегральний алгоритм
+                func = i => Theta(i) - (t / tu - 1) * Theta(i - 1);
 
-            Func<double, double, double, double> func;
-            if (type == 0) // Ланка підсилення
-                switch (funcNumber)
-                {
-                    case 0: // F(t)
-                        func = Functions.GainUnitF;
-                        break;
-                    case 1: // A(ω)
-                        func = Functions.GainUnitA;
-                        break;
-                    default: // ϕ(ω)
-                        func = Functions.GainUnitPhi;
-                        break;
-                }
-            else // Аперіодична ланка
-                switch (funcNumber)
-                {
-                    case 0: // F(t)
-                        func = Functions.AperiodicUnitF;
-                        break;
-                    case 1: // A(ω)
-                        func = Functions.AperiodicUnitA;
-                        break;
-                    default: // ϕ(ω)
-                        func = Functions.AperiodicUnitPhi;
-                        break;
-                }
-
-
-            for (double xx = 0; xx < 2 * Math.PI * 10; xx += .01)
+            var x = new List<double> { 0 };
+            var y = new List<double> { func(0) };
+            for (var i = 1; i < n; i++)
             {
-                x.Add(xx);
-                y.Add(func(a, k, xx));
+                x.Add(i);
+                y.Add(y[i - 1] + func(i));
             }
 
-            return new ChartData { X = x, Y = y, IsValid = true };
+            return new ChartData { X = x, Y = y, Theta = x, IsValid = true };
         }
     }
 }

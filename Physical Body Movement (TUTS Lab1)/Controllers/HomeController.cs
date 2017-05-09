@@ -30,13 +30,16 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Controllers
         }
 
         [HttpGet]
-        public ChartData GetChartData(string a, string k, int type, int funcNumber)
+        public ChartData GetChartData(string tu, string tg, string t, string thetaCoefficient, string n, int type)
         {
-            if (!double.TryParse(a, out double aD) ||
-                !double.TryParse(k, out double kD))
+            if (!double.TryParse(tu, out double tuD) ||
+                !double.TryParse(tg, out double tgD) ||
+                !double.TryParse(t, out double tD) ||
+                !double.TryParse(thetaCoefficient, out double thetaCoefficientD) ||
+                !double.TryParse(n, out double nD))
                 return new ChartData();
 
-            return Physics.Calculate(aD, kD, type, funcNumber);
+            return Physics.Calculate(tuD, tgD, tD, thetaCoefficientD, nD, type);
         }
     }
 }
