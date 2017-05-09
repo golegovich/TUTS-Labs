@@ -34,7 +34,7 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Models
                 t += time;
             }
 
-            return new ChartData { X = x, Y = y, IsValid = true };
+            return new ChartData { X = x, Y = y, TotalTime = t, IsValid = true };
         }
     }
 }

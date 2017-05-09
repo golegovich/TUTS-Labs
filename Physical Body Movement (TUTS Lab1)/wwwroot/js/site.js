@@ -1,5 +1,6 @@
 ﻿function drawChart() {
     $("#error").addClass("hide");
+    $("#success").addClass("hide");
     $.get("/Home/GetChartData",
         {
             a1: $("#a1").val(),
@@ -11,7 +12,6 @@
         function (data) {
             if (!data.isValid) {
 	            $("#error").toggle();
-                //var divForError = $("#error")[0];
                 $("#error")[0].textContent = "You entered wrong data. All values must be doubles";
 	            $("#error").removeClass("hide");
                 return;
@@ -33,6 +33,10 @@
                     ]
                 }
             });
+
+            $("#success").toggle();
+            $("#success")[0].textContent = "Total time is " + data.totalTime + " seconds";
+            $("#success").removeClass("hide");
         }
     );
 }
