@@ -1,40 +1,52 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Physical_Body_Movement__TUTS_Lab1_.Models
 {
     public static class Physics
     {
-        public static ChartData Calculate(double a, double k, double f, int type)
+        public static ChartData Calculate(double a, double k, int type, int funcNumber)
         {
             var x = new List<double>();
             var y = new List<double>();
 
-            //var xx = x0;
-            //var v = .0;
-            //var t = .0;
-            //while (xx < x1)
-            //{
-            //    x.Add(xx);
-            //    y.Add(v);
 
-            //    v += a1 * t;
-            //    xx += v * t + a1 * t * t / 2;
+            Func<double, double, double, double> func;
+            if (type == 0) // Ланка підсилення
+                switch (funcNumber)
+                {
+                    case 0: // F(t)
+                        func = Functions.GainUnitF;
+                        break;
+                    case 1: // A(ω)
+                        func = Functions.GainUnitA;
+                        break;
+                    default: // ϕ(ω)
+                        func = Functions.GainUnitPhi;
+                        break;
+                }
+            else // Аперіодична ланка
+                switch (funcNumber)
+                {
+                    case 0: // F(t)
+                        func = Functions.AperiodicUnitF;
+                        break;
+                    case 1: // A(ω)
+                        func = Functions.AperiodicUnitA;
+                        break;
+                    default: // ϕ(ω)
+                        func = Functions.AperiodicUnitPhi;
+                        break;
+                }
 
-            //    t += time;
-            //}
 
-            //while (0 < v)
-            //{
-            //    x.Add(xx);
-            //    y.Add(v);
+            for (double xx = 0; xx < 2 * Math.PI * 10; xx += .01)
+            {
+                x.Add(xx);
+                y.Add(func(a, k, xx));
+            }
 
-            //    v -= a2 * t;
-            //    xx += v * t - a2 * t * t / 2;
-
-            //    t += time;
-            //}
-
-            return new ChartData();//{ X = x, Y = y, IsValid = true };
+            return new ChartData { X = x, Y = y, IsValid = true };
         }
     }
 }

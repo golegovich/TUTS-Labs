@@ -1,11 +1,11 @@
-﻿function drawChart() {
+﻿function drawChart(funcNumber) {
     $("#error").addClass("hide");
     $.get("/Home/GetChartData",
         {
             a: $("#a").val(),
             k: $("#k").val(),
-            f: $("#f").val(),
-            type: $("input[name=type]:checked").val()
+            type: $("input[name=type]:checked").val(),
+            funcNumber: funcNumber
         },
         function (data) {
             if (!data.isValid) {

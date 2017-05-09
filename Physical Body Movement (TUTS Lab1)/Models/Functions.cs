@@ -4,17 +4,17 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Models
 {
     public static class Functions
     {
-        public static double GainUnitF(double k, double t)
+        public static double GainUnitF(double a, double k, double t)
         {
             return k * Math.Sin(t);
         }
 
-        public static double GainUnitA(double k)
+        public static double GainUnitA(double a, double k, double ω)
         {
             return k;
         }
 
-        public static double GainUnitPhi()
+        public static double GainUnitPhi(double a, double k, double ω)
         {
             return 0;
         }
@@ -29,7 +29,7 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Models
             return k / Math.Sqrt(1 + a * a + ω * ω);
         }
 
-        public static double AperiodicUnitPhi(double a, double ω)
+        public static double AperiodicUnitPhi(double a, double k, double ω)
         {
             return Math.Atan(-a * ω);
         }

@@ -8,13 +8,13 @@
         <input id="a" type="text" placeholder="a" value="10" />
         <label for="k">k</label>
         <input id="k" type="text" placeholder="k" value="5"/>
-        <label for="f">f</label>
-        <input id="f" type="text" placeholder="f" value="0"/><br><br>
 
-        <input type="radio" name="type" value="1" checked>Ланка підсилення
-        <input type="radio" name="type" value="2">Аперіодична ланка<br><br>
+        <input type="radio" name="type" value="0" checked>Ланка підсилення
+        <input type="radio" name="type" value="1">Аперіодична ланка<br><br>
 
-        <button onclick="drawChart()" class="btn">Build</button>
+        <button onclick="drawChart(0)" class="btn">F(t)</button>
+        <button onclick="drawChart(1)" class="btn">A(ω)</button>
+        <button onclick="drawChart(2)" class="btn">ϕ(ω)</button>
     </div>
     <div class="row">
     </div>
