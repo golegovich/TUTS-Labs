@@ -2,11 +2,10 @@
     $("#error").addClass("hide");
     $.get("/Home/GetChartData",
         {
-            a1: $("#a1").val(),
-            a2: $("#a2").val(),
-            time: $("#time").val(),
-            x0: $("#x0").val(),
-            x1: $("#x1").val()
+            a: $("#a").val(),
+            k: $("#k").val(),
+            f: $("#f").val(),
+            type: $("input[name=type]:checked").val()
         },
         function (data) {
             if (!data.isValid) {
