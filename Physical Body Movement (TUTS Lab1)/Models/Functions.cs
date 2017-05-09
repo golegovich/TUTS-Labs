@@ -21,7 +21,7 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Models
 
         public static double AperiodicUnitF(double a, double k, double t)
         {
-            return k * a * (Math.Sin(t) - a * Math.Cos(t)) / (1 + a * a);
+            return k * a * (Math.Sin(t) - a * Math.Cos(t)) / (1 + a * a) * .5;
         }
 
         public static double AperiodicUnitA(double a, double k, double ω)

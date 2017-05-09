@@ -1,4 +1,15 @@
 ﻿function drawChart(funcNumber) {
+    var title;
+    switch (funcNumber) {
+        case 0:
+            title = "F(t)";
+            break;
+        case 1:
+            title = "A(ω)";
+	        break;
+        default:
+            title = "ϕ(ω)";
+    }
     $("#error").addClass("hide");
     $.get("/Home/GetChartData",
         {
@@ -9,17 +20,17 @@
         },
         function (data) {
             if (!data.isValid) {
-	            $("#error").toggle();
+                $("#error").toggle();
                 //var divForError = $("#error")[0];
                 $("#error")[0].textContent = "You entered wrong data. All values must be doubles";
-	            $("#error").removeClass("hide");
+                $("#error").removeClass("hide");
                 return;
             }
 
             var xAxis = data.x.slice();
             xAxis.unshift("x");
             var yAxis = data.y.slice();
-            yAxis.unshift("dx/dt");
+            yAxis.unshift(title);
             c3.generate({
                 bindto: "#chart",
                 data: {
