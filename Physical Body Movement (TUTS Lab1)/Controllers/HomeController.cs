@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Physical_Body_Movement__TUTS_Lab1_.Models;
 
 namespace Physical_Body_Movement__TUTS_Lab1_.Controllers
@@ -41,12 +40,6 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Controllers
                 return new ChartData();
 
             return Physics.Calculate(a1D, a2D, timeD, x0D, x1D);
-            return new ChartData
-            {
-                X = new List<double> { 1, 2, 3 },
-                Y = new List<double> { 3, 2, 1 },
-                IsValid = true
-            };
         }
     }
 }
