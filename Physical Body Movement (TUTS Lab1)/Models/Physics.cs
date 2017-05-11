@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Physical_Body_Movement__TUTS_Lab1_.Models
 {
@@ -9,10 +10,13 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Models
             var x = new List<double>();
             var y = new List<double>();
 
+            var absComponent = Math.Abs(a1 / a2);
+            var intermediateX = (absComponent * x1 + x0) / (1 + absComponent);
+
             var xx = x0;
             var v = .0;
             var t = .0;
-            while (xx < x1)
+            while (xx < intermediateX)
             {
                 x.Add(xx);
                 y.Add(v);
@@ -34,7 +38,8 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Models
                 t += time;
             }
 
-            return new ChartData { X = x, Y = y, TotalTime = t, IsValid = true };
+            var smth = Math.Sqrt((x1 - x0) / (a1 / 2 - a1 * a1 / 2 / -a2));
+            return new ChartData { X = x, Y = y, TotalTime = -a1 * smth / -a2 + smth, IsValid = true };
         }
     }
 }
