@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Physical_Body_Movement__TUTS_Lab1_.Models;
+using System.Globalization;
 
 namespace Physical_Body_Movement__TUTS_Lab1_.Controllers
 {
@@ -32,11 +33,11 @@ namespace Physical_Body_Movement__TUTS_Lab1_.Controllers
         [HttpGet]
         public ChartData GetChartData(string a1, string a2, string time, string x0, string x1)
         {
-            if (!double.TryParse(a1, out double a1D) ||
-                !double.TryParse(a2, out double a2D) ||
-                !double.TryParse(time, out double timeD) ||
-                !double.TryParse(x0, out double x0D) ||
-                !double.TryParse(x1, out double x1D))
+            if (!double.TryParse(a1, NumberStyles.Any,  CultureInfo.InvariantCulture, out double a1D) ||
+                !double.TryParse(a2, NumberStyles.Any,  CultureInfo.InvariantCulture, out double a2D) ||
+                !double.TryParse(time, NumberStyles.Any,  CultureInfo.InvariantCulture, out double timeD) ||
+                !double.TryParse(x0, NumberStyles.Any,  CultureInfo.InvariantCulture, out double x0D) ||
+                !double.TryParse(x1, NumberStyles.Any,  CultureInfo.InvariantCulture, out double x1D))
                 return new ChartData();
 
             return Physics.Calculate(a1D, a2D, timeD, x0D, x1D);
